@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Job Portal Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #f3f2ef;
+    }
+
+    /* NAV BAR */
+    nav {
+      background-color: white;
+      padding: 16px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e0e0e0;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      color: #0a66c2;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 12px;
+    }
+
+    .nav-btn {
+      padding: 8px 16px;
+      border: 1px solid #0a66c2;
+      background-color: white;
+      color: #0a66c2;
+      border-radius: 20px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .nav-btn:hover {
+      background-color: #e6f0fc;
+    }
+
+    .nav-btn.primary {
+      background-color: #0a66c2;
+      color: white;
+      border: none;
+    }
+
+    .nav-btn.primary:hover {
+      background-color: #004182;
+    }
+
+    /* LOGIN CONTAINER */
+    .container {
+      display: flex;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 1000px;
+      width: 100%;
+      overflow: hidden;
+      margin: 60px auto;
+    }
+
+    .left {
+      flex: 1;
+      padding: 50px 40px;
+    }
+
+    .left h1 {
+      color: #004182;
+      font-size: 32px;
+      margin-bottom: 30px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      background-color: #0a66c2;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      margin-bottom: 15px;
+    }
+
+    .btn:hover {
+      background-color: #004182;
+    }
+
+    .or {
+      text-align: center;
+      color: #888;
+      margin: 15px 0;
+      font-size: 14px;
+    }
+
+    .oauth-btn {
+      width: 100%;
+      padding: 12px;
+      border-radius: 5px;
+      font-size: 14px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .google-btn {
+      border: 1px solid #ccc;
+      background-color: white;
+    }
+
+    .microsoft-btn {
+      border: 1px solid #ccc;
+      background-color: #f3f3f3;
+    }
+
+    .right {
+      flex: 1;
+      background: url("lorenz.png") no-repeat center;
+      background-size: cover;
+    }
+
+    .small-text {
+      font-size: 12px;
+      color: #555;
+      margin-top: 10px;
+    }
+  </style>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"></script>
+</head>
+<body>
+
+  <!-- Nav Bar -->
+  <nav>
+    <div class="logo">Trabahong Delfin</div>
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Jobs</a>
+      <a href="#">Companies</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <button class="nav-btn">Join now</button>
+      <button class="nav-btn primary">Sign in</button>
+    </div>
+  </nav>
+
+  <!-- Login Box -->
+  <div class="container">
+    <div class="left">
+      <h1>Welcome to <br>Trabahong Delfin</h1>
+
+      <input type="email" id="email" placeholder="Email address" />
+      <input type="password" id="password" placeholder="Password" />
+      <button class="btn" onclick="handleLogin()">Sign in</button>
+
+      <div class="or">or</div>
+
+      <div class="oauth-btn google-btn" onclick="googleSignIn()">
+        <img src="google.webp" width="18" />
+        Continue with Google
+      </div>
+      
+    
+
+      <div class="small-text">
+        By continuing, you agree to our <a href="#">User Agreement</a>, <a href="#">Privacy Policy</a>, and <a href="#">Cookie Policy</a>.
+      </div>
+    </div>
+    <div class="right"></div>
+  </div>
+
+  <script>
+    function handleLogin() {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      if (!email || !password) {
+        alert('Please enter both email and password.');
+        return;
+      }
+
+      
+      if (email === "user@example.com" && password === "123456") {
+        alert("Login successful!");
+
+      } else {
+        alert("Invalid credentials.");
+      }
+    }
+  </script>
+ <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+    import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+  
+    const firebaseConfig = {
+      apiKey: "AIzaSyDxup8fGwmaEwBPyJE9XZ90EmLqRy1Ue4",
+      authDomain: "job-portal-57f39.firebaseapp.com",
+      projectId: "job-portal-57f39",
+      storageBucket: "job-portal-57f39.appspot.com",
+      messagingSenderId: "562198434426",
+      appId: "1:562198434426:web:8bd558a4e2cdfe3002a1c3",
+      measurementId: "G-QSBTL597RB"
+    };
+  
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app); // 🔥 use the app instance here
+    const provider = new GoogleAuthProvider();
+  
+    window.googleSignIn = function () {
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          const user = result.user;
+          alert("Welcome, " + user.displayName);
+          console.log("User info:", user);
+        })
+        .catch((error) => {
+          console.error("Error during sign-in", error);
+          alert("Google Sign-In failed: " + error.message);
+        });
+    };
+  </script>
+  
+  
+</body>
+</html>
