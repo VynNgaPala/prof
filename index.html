@@ -135,6 +135,7 @@
 
     .oauth-btn {
       width: 100%;
+      color:grey;
       padding: 12px;
       border-radius: 5px;
       font-size: 14px;
@@ -149,7 +150,12 @@
     .google-btn {
       border: 1px solid #ccc;
       background-color: white;
+      color:grey;
     }
+    .google-btn:hover{
+      background-color: rgb(185, 183, 183)
+    }
+  
 
     .microsoft-btn {
       border: 1px solid #ccc;
@@ -195,14 +201,14 @@
 
       <input type="email" id="email" placeholder="Email address" />
       <input type="password" id="password" placeholder="Password" />
-      <button class="btn" onclick="handleLogin()">Sign in</button>
+      <a href = "SignIn.html"><button class="btn">Sign in</button></a>
 
       <div class="or">or</div>
 
-      <div class="oauth-btn google-btn" onclick="googleSignIn()">
-        <img src="google.webp" width="18" />
-        Continue with Google
-      </div>
+      <a href="SignUP.html" class="oauth-btn google-btn" style="text-decoration: none; color: inherit;">
+        Sign Up
+      </a>
+      
       
     
 
@@ -213,56 +219,6 @@
     <div class="right"></div>
   </div>
 
-  <script>
-    function handleLogin() {
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
-
-      if (!email || !password) {
-        alert('Please enter both email and password.');
-        return;
-      }
-
-      
-      if (email === "user@example.com" && password === "123456") {
-        alert("Login successful!");
-
-      } else {
-        alert("Invalid credentials.");
-      }
-    }
-  </script>
- <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
-    import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
-  
-    const firebaseConfig = {
-      apiKey: "AIzaSyDxup8fGwmaEwBPyJE9XZ90EmLqRy1Ue4",
-      authDomain: "job-portal-57f39.firebaseapp.com",
-      projectId: "job-portal-57f39",
-      storageBucket: "job-portal-57f39.appspot.com",
-      messagingSenderId: "562198434426",
-      appId: "1:562198434426:web:8bd558a4e2cdfe3002a1c3",
-      measurementId: "G-QSBTL597RB"
-    };
-  
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app); // 🔥 use the app instance here
-    const provider = new GoogleAuthProvider();
-  
-    window.googleSignIn = function () {
-      signInWithPopup(auth, provider)
-        .then((result) => {
-          const user = result.user;
-          alert("Welcome, " + user.displayName);
-          console.log("User info:", user);
-        })
-        .catch((error) => {
-          console.error("Error during sign-in", error);
-          alert("Google Sign-In failed: " + error.message);
-        });
-    };
-  </script>
   
   
 </body>
