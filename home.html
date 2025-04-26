@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Trabahong Delfin - Home</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      background-color: #f3f2ef;
+    }
+
+    nav {
+      background-color: #fff;
+      padding: 16px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e0e0e0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #0a66c2;
+    }
+
+    .nav-links a {
+      margin-right: 20px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #0a66c2;
+    }
+
+    .nav-actions .nav-btn {
+      background-color: #0a66c2;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .nav-btn:hover {
+      background-color: #004182;
+    }
+
+    section {
+      padding: 60px 40px;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      color: #0a66c2;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      color: #555;
+      font-size: 18px;
+    }
+
+    .hero input[type="text"] {
+      padding: 14px 20px;
+      width: 300px;
+      border-radius: 30px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    .hero button {
+      padding: 14px 24px;
+      background-color: #0a66c2;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .featured {
+      margin-top: 60px;
+    }
+
+    .featured-job {
+      background: white;
+      padding: 20px;
+      border-left: 5px solid #0a66c2;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .featured-job h3 {
+      margin: 0;
+    }
+
+    .featured-job p {
+      color: #555;
+    }
+
+    .featured-job button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #0a66c2;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">Trabahong Delfin</div>
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Jobs</a>
+      <a href="#">Companies</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <button class="nav-btn" onclick="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <section>
+    <div class="hero">
+      <h1>Find Your Dream Job</h1>
+      <p>Explore thousands of job opportunities with all the information you need. It's your time to shine.</p>
+      <div style="margin-top: 30px;">
+        <input type="text" placeholder="Search jobs..." />
+        <button>Search</button>
+      </div>
+    </div>
+
+    <div>
+      <h2>Job Categories</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>IT & Software</h3>
+          <p>125 jobs</p>
+        </div>
+        <div class="card">
+          <h3>Customer Service</h3>
+          <p>78 jobs</p>
+        </div>
+        <div class="card">
+          <h3>Healthcare</h3>
+          <p>60 jobs</p>
+        </div>
+        <div class="card">
+          <h3>Education</h3>
+          <p>89 jobs</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="featured">
+      <h2>Featured Jobs</h2>
+      <div class="grid" style="grid-template-columns: 1fr 1fr;">
+        <div class="featured-job">
+          <h3>Front-End Developer</h3>
+          <p>Delfin Tech Solutions · Quezon City · PHP 40,000/month</p>
+          <button>Apply Now</button>
+        </div>
+        <div class="featured-job">
+          <h3>Customer Support Agent</h3>
+          <p>GlobalServe PH · Remote · PHP 25,000/month</p>
+          <button>Apply Now</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function logout() {
+      localStorage.removeItem('loggedIn');
+      window.location.href = "index.html";
+    }
+
+    if (!localStorage.getItem('loggedIn')) {
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>
