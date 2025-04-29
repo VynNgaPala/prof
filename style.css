@@ -1,0 +1,158 @@
+/* Basic Reset and Layout */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #eef3f8;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  nav {
+    background-color: white;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #0a66c2;
+  }
+  
+  .nav-links a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+  
+  .nav-links a:hover {
+    color: #0a66c2; /* Highlight on hover */
+  }
+  
+  .nav-actions button {
+    background-color: #0a66c2;
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  
+  /* Active Link Styling */
+  .nav-links .active {
+    font-weight: bold;
+    color: #0a66c2;
+  }
+  
+  /* Optional: Change background color for active page */
+  .nav-links .active:hover {
+    background-color: rgba(10, 102, 194, 0.1);
+  }
+  
+  /* Hero Section */
+  .hero {
+    background-image: url('https://images.unsplash.com/photo-1521791136064-7986c2920216');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 100px 40px;
+    text-align: center;
+    position: relative;
+  }
+  
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 1;
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .hero h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+  }
+  
+  .hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+  
+  .hero input,
+  .hero button {
+    padding: 14px;
+    border-radius: 30px;
+    border: none;
+    font-size: 16px;
+  }
+  
+  .hero input {
+    width: 300px;
+    margin-right: 10px;
+  }
+  
+  .hero button {
+    background-color: #0a66c2;
+    color: white;
+    cursor: pointer;
+  }
+  
+  /* Sections */
+  .section {
+    padding: 60px 40px;
+  }
+  
+  .section h2 {
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Grid Layout for Cards */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .card {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  
+  .card h3 {
+    margin: 0 0 10px;
+  }
+  
+  .card p {
+    margin: 0;
+    color: #555;
+  }
+  
+  /* Footer */
+  footer {
+    background-color: #fff;
+    padding: 20px 40px;
+    text-align: center;
+    color: #777;
+    border-top: 1px solid #ddd;
+  }
+  
