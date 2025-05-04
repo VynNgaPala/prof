@@ -13,37 +13,54 @@
     <div class="nav-links">
       <a href="home.html" class="nav-item">Home</a>
       <a href="jobs.html" class="nav-item">Jobs</a>
-      <a href="companies.html" class="nav-item">Companies</a>
+    </div>
+      <div class="nav-actions">
+        <a href="account.html" class="account-logo">
+          <img src="acc.jpg" alt="Account" style="width: 30px; height: 30px;"/>
+        </a>
+      </div>
       
-    </div>
-    <div class="nav-actions">
-      <button onclick="logout()">Logout</button>
-    </div>
+      
+    
+    
   </nav>
+
+  
 
   <div class="hero">
     <div class="hero-content">
       <h1>Welcome to PathFinders</h1>
       <p>Connect to opportunities that match your skills</p>
-      <input type="text" placeholder="Search for jobs, companies...">
-      <button>Search</button>
+  
+      <div class="search-bar">
+        <input id="searchInput" type="text" placeholder="Search for jobs, companies..." />
+        <select id="jobTypeFilter">
+          <option value="">All Types</option>
+          <option value="Full-Time">Full-Time</option>
+          <option value="Part-Time">Part-Time</option>
+          <option value="Freelance">Freelance</option>
+        </select>
+        <select id="locationFilter">
+          <option value="">All Locations</option>
+          <option value="Metro Manila">Metro Manila</option>
+          <option value="Cebu">Cebu</option>
+          <option value="Davao">Davao</option>
+          <option value="Remote">Remote</option>
+        </select>
+        <select id="workTypeFilter">
+          <option value="">Onsite or Remote</option>
+          <option value="Onsite">Onsite</option>
+          <option value="Remote">Remote</option>
+          <option value="Hybrid">Hybrid</option>
+        </select>
+        <select id="salaryFilter">
+          <option value="">Any Salary</option>
+          <option value="50000">Above 50,000</option>
+          <option value="100000">Above 100,000</option>
+        </select>
+        <button onclick="filterJobs()">Search</button>
+      </div>
     </div>
-  </div>
-
-  <div class="section filters">
-    <h2>Filter Your Job Search</h2>
-    <select>
-      <option>All Locations</option>
-      <option>Metro Manila</option>
-      <option>Cebu</option>
-      <option>Davao</option>
-    </select>
-    <select>
-      <option>Job Type</option>
-      <option>Full-Time</option>
-      <option>Part-Time</option>
-      <option>Freelance</option>
-    </select>
   </div>
 
   <div class="section">
@@ -110,10 +127,6 @@
     </ul>
   </div>
 
- 
-
-  
-
   <footer>
     &copy; 2025 PathFinders. All rights reserved.
   </footer>
@@ -137,6 +150,27 @@
       }
     });
   </script>
+  <script>
+    function filterJobs() {
+      const keyword = document.getElementById('searchInput').value;
+      const jobType = document.getElementById('jobTypeFilter').value;
+      const location = document.getElementById('locationFilter').value;
+      const workType = document.getElementById('workTypeFilter').value;
+      const salary = document.getElementById('salaryFilter').value;
+  
+      const params = new URLSearchParams({
+        keyword,
+        jobType,
+        location,
+        workType,
+        salary
+      });
+  
+      window.location.href = `jobs.html?${params.toString()}`;
+    }
+  </script>
+  
+
 
 </body>
 </html>
