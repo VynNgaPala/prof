@@ -47,7 +47,8 @@
         </div>
       </div>
 
-      <button type="submit" class="signup-btn"><a href="login.php"></a>Sign Up</button>
+      <!-- Corrected button: removed <a> tag inside button -->
+      <button type="submit" class="signup-btn">Sign Up</button>
     </form>
 
     <div class="login-link">
