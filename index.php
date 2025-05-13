@@ -1,53 +1,51 @@
+<?php
+session_start();
 
+// If already logged in, redirect to home
+if (isset($_SESSION['user_id'])) {
+    header("Location: home.php");
+    exit();
+}
+
+// Handle optional error messages
+$error = isset($_GET['error']) ? htmlspecialchars($_GET['error']) : '';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PathFinders– Login</title>
+  <title>PathFinders – Login</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-
   <style>
-    * {
-      box-sizing: border-box;
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #eef1f6;
+      position: relative;
+    }
+    body::before {
+      content: "";
+      background: url('cat.gif') no-repeat center center/cover;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
     }
 
-    body {
-  margin: 0;
-  font-family: 'Inter', sans-serif;
-  background-color: #eef1f6;
-  position: relative;
-  z-index: 0;
-}
-
-
-body::before {
-  content: "";
-  background: url('cat.gif') no-repeat center center/cover;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
- 
-}
-
-
     .container {
-  background-color: rgba(255, 255, 255, 0.2); 
-  backdrop-filter: blur(10px); 
-  -webkit-backdrop-filter: blur(10px); 
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-  max-width: 1100px;
-  width: 95%;
-  overflow: hidden;
-  margin: 80px auto;
-  display: flex;
-  flex-wrap: wrap;
-}
-
+      background-color: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      max-width: 1100px;
+      width: 95%;
+      margin: 80px auto;
+      display: flex;
+      flex-wrap: wrap;
+      overflow: hidden;
+    }
 
     .left {
       flex: 1;
@@ -111,10 +109,10 @@ body::before {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      cursor: pointer;
-      border: 1px solid #ccc;
+      text-decoration: none;
+      color: #000;
       background-color: white;
+      border: 1px solid #ccc;
       transition: background-color 0.3s;
     }
 
@@ -123,13 +121,11 @@ body::before {
     }
 
     .right {
-  flex: 1;
-  background: url("map.png") no-repeat center;
-  background-size: 100%; 
-  background-position: center; 
-  min-height: 400px;
-}
-
+      flex: 1;
+      background: url("map.png") no-repeat center;
+      background-size: 100%;
+      min-height: 400px;
+    }
 
     .small-text {
       font-size: 13px;
@@ -138,47 +134,45 @@ body::before {
       line-height: 1.5;
     }
 
-    @media (max-width: 768px) {
-      .container {
-        flex-direction: column;
-        margin: 40px 20px;
-      }
+    .error-msg {
+      background: rgba(255, 0, 0, 0.1);
+      border: 1px solid red;
+      padding: 10px;
+      color: red;
+      border-radius: 5px;
+      margin-bottom: 15px;
+    }
 
-      .right {
-        display: none;
-      }
+    @media (max-width: 768px) {
+      .container { flex-direction: column; margin: 40px 20px; }
+      .right { display: none; }
     }
   </style>
 </head>
 <body>
 
- 
-
-  <!-- Login Container -->
   <div class="container">
     <div class="left">
       <h1>Welcome to PathFinders</h1>
 
-    <form action="login.php" method="POST">
-    <input type="email" id="email" name="email" placeholder="Email address" required />
-    <input type="password" id="password" name="password" placeholder="Password" required />
-    <button class="btn" type="submit">Sign in</button>
-</form>
+      <?php if (!empty($error)) : ?>
+        <div class="error-msg"><?= $error ?></div>
+      <?php endif; ?>
 
-
-      
+      <form action="login.php" method="POST">
+        <input type="email" name="email" placeholder="Email address" required />
+        <input type="password" name="password" placeholder="Password" required />
+        <button class="btn" type="submit">Sign in</button>
+      </form>
 
       <div class="or">or</div>
 
-      <a href="SignUP.php" class="oauth-btn google-btn" style="text-decoration: none; color: inherit;">
-        Sign Up
-      </a>
-      
+      <a href="signup.php" class="oauth-btn">Sign Up</a>
 
       <div class="small-text">
-        By continuing, you agree to our 
-        <a href="#">User Agreement</a>, 
-        <a href="#">Privacy Policy</a>, and 
+        By continuing, you agree to our
+        <a href="#">User Agreement</a>,
+        <a href="#">Privacy Policy</a>, and
         <a href="#">Cookie Policy</a>.
       </div>
     </div>
@@ -187,4 +181,3 @@ body::before {
 
 </body>
 </html>
-
